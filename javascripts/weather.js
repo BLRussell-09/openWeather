@@ -1,4 +1,5 @@
 const dom = require('./dom');
+// const events = require('./events');
 
 let apiKey = '';
 
@@ -39,6 +40,27 @@ const fiveCast = () =>
   });
 };
 
+const showFiveCast = () =>
+{
+  const forecastArr = [];
+  fiveCast().then((result) =>
+  {
+    result.list.forEach(element =>
+    {
+      if (element.dt_txt.includes('00:00:00'))
+      {
+        forecastArr.push(element);
+      }
+    });
+    console.log(forecastArr);
+    console.log(result);
+    dom.forecastBuilder(forecastArr, result.city.name);
+  }).catch((err) =>
+  {
+    console.error('Search error', err);
+  });
+};
+
 const showWeather = () =>
 {
   const resultArr = [];
@@ -47,6 +69,8 @@ const showWeather = () =>
     resultArr.push(result);
     console.log(resultArr);
     dom.domBuilder(resultArr);
+    // events.fiveCast();
+    $('#forecast').click(showFiveCast);
   }).catch((err) =>
   {
     console.error('Search error', err);
@@ -57,4 +81,5 @@ module.exports =
 {
   setKey,
   showWeather,
+  showFiveCast,
 };
