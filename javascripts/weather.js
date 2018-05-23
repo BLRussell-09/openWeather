@@ -23,6 +23,22 @@ const searchWeather = () =>
   });
 };
 
+const fiveCast = () =>
+{
+  const zipCode = $('#searchBar').val();
+  const url = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&units=imperial&APPID=`;
+  return new Promise((resolve, reject) =>
+  {
+    $.ajax(url + apiKey).done((result) =>
+    {
+      resolve(result);
+    }).fail((err) =>
+    {
+      reject(err);
+    });
+  });
+};
+
 const showWeather = () =>
 {
   const resultArr = [];
