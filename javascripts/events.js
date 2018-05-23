@@ -7,11 +7,18 @@ const initButtons = () =>
     if (e.key === 'Enter')
     {
       weather.showWeather();
+      // $('.input-group').addClass('hidden');
     }
   });
+};
+
+const fiveCast = () =>
+{
+  $('#forecast').click(weather.showFiveCast());
 };
 
 module.exports =
 {
   initButtons,
+  fiveCast,
 };

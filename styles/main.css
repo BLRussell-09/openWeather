@@ -1,3 +1,31 @@
+body {
+  background-image: url('/images/unsplash.jpg');
+  background-size: 1920px 1080px;
+}
+
 .Clear {
   background-color: deepskyblue;
+}
+
+.Clouds {
+  background-color: darkgray;
+}
+
+.Rain {
+  background-color: aqua;
+}
+
+.weatherCard {
+  margin-top: 1em;
+  border: 1px solid black;
+  /* margin-left: 4px;
+  margin-right: 4px; */
+}
+
+#soloCard {
+  margin-top: 1em;
+}
+
+#forecast {
+  margin: 1em;
 }
