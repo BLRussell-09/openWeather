@@ -33,6 +33,7 @@ const fiveCast = () =>
     $.ajax(url + apiKey).done((result) =>
     {
       resolve(result);
+      console.log('Five day cast', result);
     }).fail((err) =>
     {
       reject(err);
@@ -45,16 +46,16 @@ const showFiveCast = () =>
   const forecastArr = [];
   fiveCast().then((result) =>
   {
-    result.list.forEach(element =>
+    const blank = result.list;
+    console.log(blank.length);
+    for (let idx = 0; idx < 40; idx++)
     {
-      if (element.dt_txt.includes('00:00:00'))
-      {
-        forecastArr.push(element);
-      }
-    });
+      console.log(blank[idx]);
+      forecastArr.push(blank[idx]);
+      dom.forecastBuilder(forecastArr, result.city.name);
+      idx = idx + 7;
+    };
     console.log(forecastArr);
-    console.log(result);
-    dom.forecastBuilder(forecastArr, result.city.name);
   }).catch((err) =>
   {
     console.error('Search error', err);
