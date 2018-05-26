@@ -7,14 +7,20 @@ const initButtons = () =>
     if (e.key === 'Enter')
     {
       weather.showWeather();
-      // $('.input-group').addClass('hidden');
+      $('.fiveDayCast').html('');
     }
   });
 };
 
 const fiveCast = () =>
 {
-  $('#forecast').click(weather.showFiveCast());
+  $('#forecast').click(doStuff);
+
+};
+
+const doStuff = () =>
+{
+  weather.showFiveCast();
 };
 
 module.exports =
