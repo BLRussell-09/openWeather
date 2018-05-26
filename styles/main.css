@@ -3,29 +3,53 @@ body {
   background-size: 1920px 1080px;
 }
 
+.row {
+  margin-top: 1em;
+}
+
+/* Card Colors */
+
 .Clear {
-  background-color: deepskyblue;
+  background-color: snow;
+}
+
+.Mist {
+  background: rgb(109,111,116);
+  background: linear-gradient(45deg, rgba(109,111,116,1) 47%, rgba(237,237,232,1) 94%);
 }
 
 .Clouds {
-  background-color: darkgray;
+  background-color: #607d8b;
 }
 
 .Rain {
   background-color: aqua;
 }
 
+/* Solo and Forecast Cards */
 .weatherCard {
   margin-top: 1em;
-  border: 1px solid black;
-  /* margin-left: 4px;
-  margin-right: 4px; */
+  height: 20em;
+  border-radius: 12%;
+  /* border: 1px solid gray; */
+  transition: transform .2s;
+  text-transform:capitalize;
+}
+
+.weatherCard:hover {
+  transform: scale(1.2);
 }
 
 #soloCard {
   margin-top: 1em;
+  border-radius: 2%;
+  transition: transform .2s;
 }
 
-#forecast {
+#soloCard:hover {
+  transform: scale(1.01);
+}
+
+button#forecast {
   margin: 1em;
 }

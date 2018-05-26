@@ -33,7 +33,6 @@ const fiveCast = () =>
     $.ajax(url + apiKey).done((result) =>
     {
       resolve(result);
-      console.log('Five day cast', result);
     }).fail((err) =>
     {
       reject(err);
@@ -46,16 +45,13 @@ const showFiveCast = () =>
   const forecastArr = [];
   fiveCast().then((result) =>
   {
-    const blank = result.list;
-    console.log(blank.length);
     for (let idx = 0; idx < 40; idx++)
     {
-      console.log(blank[idx]);
-      forecastArr.push(blank[idx]);
+      forecastArr.push(result.list[idx]);
       dom.forecastBuilder(forecastArr, result.city.name);
       idx = idx + 7;
     };
-    console.log(forecastArr);
+    $('#forecast').addClass('hidden');
   }).catch((err) =>
   {
     console.error('Search error', err);
@@ -68,9 +64,7 @@ const showWeather = () =>
   searchWeather().then((result) =>
   {
     resultArr.push(result);
-    console.log(resultArr);
     dom.domBuilder(resultArr);
-    // events.fiveCast();
     $('#forecast').click(showFiveCast);
   }).catch((err) =>
   {
