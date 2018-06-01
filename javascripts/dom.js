@@ -27,7 +27,18 @@ const forecastBuilder = (dataArr, name) =>
     domString += `<div class='col-md-3 '>`;
     domString += `<div class='col-md-12 weatherCard ${element.weather[0].main}'>`;
     domString += `<h2>${dayTime[0]}</h2>`;
-    domString += `<p>${element.weather[0].description}: ${element.main.temp}&degF</p>`;
+    if (element.weather[0].main === 'Clouds')
+    {
+      domString += `<p><img src="./images/cloud.png"> ${element.main.temp}&degF</p>`;
+    }
+    else if (element.weather[0].main === 'Clear')
+    {
+      domString += `<p><img src="./images/clear.png"> ${element.main.temp}&degF</p>`;
+    }
+    else if (element.weather[0].main === 'Rain')
+    {
+      domString += `<p><img src="./images/rain.png"> ${element.main.temp}&degF</p>`;
+    }
     domString += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${element.main.temp_min}&degF <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${element.main.temp_max}&degF</p>`;
     domString += `<p>Air Pressure: ${element.main.pressure}</p>`;
     domString += `<p>Wind Speed: ${element.wind.speed}</p>`;
