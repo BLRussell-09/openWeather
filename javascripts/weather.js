@@ -65,6 +65,7 @@ const showWeather = () =>
   {
     resultArr.push(result);
     dom.domBuilder(resultArr);
+    console.log(resultArr);
     $('#forecast').click(showFiveCast);
   }).catch((err) =>
   {

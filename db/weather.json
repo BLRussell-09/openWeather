@@ -1,0 +1,10 @@
+{
+  "weather": {
+    "cast0": {
+      "location": "Calcutta",
+      "wttrConditions": "Cloudy",
+      "temp": "77",
+      "isScary": false
+    }
+  }
+}
