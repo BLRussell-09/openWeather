@@ -58,7 +58,7 @@ const saveWeatherEvent = () =>
   $(document).on('click', '.saveForecast', (e) =>
   {
     console.log('saved?');
-    const weatherToAddCard = $(e.target).closest('.weather');
+    const weatherToAddCard = $(e.target).closest('.weatherCard');
     const weatherToAdd =
     {
       location: weatherToAddCard.find('.locationTitle').text(),
@@ -89,11 +89,28 @@ const getWeatherEvent = () =>
     });
 };
 
+const deleteWeatherEvent = () =>
+{
+  $(document).on('click', '.deleteCard', (e) =>
+  {
+    console.log('gone?');
+    const forcastToDeleteId = $(e.target).closest('.weatherCard').data('firebaseId');
+    firebaseAPI.deleteWeatherFromDb(forcastToDeleteId).then(() =>
+    {
+      getWeatherEvent();
+    }).catch((err) =>
+    {
+      console.error(err);
+    });
+  });
+};
+
 const initializer = () =>
 {
   myPages();
   initButtons();
   saveWeatherEvent();
+  deleteWeatherEvent();
 };
 
 module.exports =

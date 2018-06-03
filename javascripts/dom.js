@@ -6,7 +6,7 @@ const domBuilder = (dataArr) =>
   dataArr.forEach(element =>
   {
     domString += `<div class="row">`;
-    domString += `<div class='col-md-6 col-md-offset-3 ${element.weather[0].main} weather' id='soloCard'>`;
+    domString += `<div class='col-md-6 col-md-offset-3 ${element.weather[0].main} weather weatherCard' id='soloCard'>`;
     domString += `<h2 class="locationTitle">${element.name}</h2>`;
     domString += `<h2 class="dateTime">${today.toDateString()}</h2>`;
     if (element.weather[0].main === 'Clouds')
@@ -71,7 +71,8 @@ const weatherList = (weatherArr, whereToPrint) =>
   domString += `<div class="row">`;
   weatherArr.forEach(element =>
   {
-    domString += `<div class="col-sm-6 col-md-4 ${element.wttrConditions}">`;
+    domString += `<div class="col-sm-6 col-md-4 weatherCard ${element.wttrConditions}" data-firebase-id="${element.id}">`;
+    domString += `<a class="btn btn-danger deleteCard">X</a>`;
     domString += `<h3>${element.location}</h3>`;
     domString += `<h3>${element.date}</h3>`;
     if (element.wttrConditions === 'Clouds')
