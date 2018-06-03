@@ -71,23 +71,31 @@ const weatherList = (weatherArr, whereToPrint) =>
   domString += `<div class="row">`;
   weatherArr.forEach(element =>
   {
-    domString += `<div class="col-sm-6 col-md-4 weatherCard ${element.wttrConditions}" data-firebase-id="${element.id}">`;
+    if (element.isScary === true)
+    {
+      domString += `<div class="col-sm-6 col-md-4 weatherCard red" data-firebase-id="${element.id}">`;
+    }
+    else
+    {
+      domString += `<div class="col-sm-6 col-md-4 weatherCard ${element.wttrConditions}" data-firebase-id="${element.id}">`;
+    }
     domString += `<a class="btn btn-danger deleteCard">X</a>`;
-    domString += `<h3>${element.location}</h3>`;
-    domString += `<h3>${element.date}</h3>`;
+    domString += `<h3 class="locationTitle">${element.location}</h3>`;
+    domString += `<h3 class="dateTime">${element.date}</h3>`;
     if (element.wttrConditions === 'Clouds')
     {
-      domString += `<p><img src="./images/cloud.png"></p>`;
+      domString += `<p><img data-condition="${element.wttrConditions}" src="./images/cloud.png"></p>`;
     }
     else if (element.wttrConditions === 'Clear')
     {
-      domString += `<p><img src="./images/clear.png"></p>`;
+      domString += `<p><img data-condition="${element.wttrConditions}" src="./images/clear.png"></p>`;
     }
     else if (element.wttrConditions === 'Rain')
     {
-      domString += `<p><img src="./images/rain.png"></p>`;
+      domString += `<p><img data-condition="${element.wttrConditions}" src="./images/rain.png"></p>`;
     }
-    domString += `<p>${element.temp}</p>`;
+    domString += `<p class="conditionTemp">${element.temp}</p>`;
+    domString += `<a class="btn updateCard"><img class="scaryFace" src="./images/scared.png"></a>`;
     domString += `</div>`;
   });
   domString += `</div>`;
