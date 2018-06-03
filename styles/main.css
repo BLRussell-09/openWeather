@@ -32,13 +32,13 @@ body {
   height: 22em;
   border-radius: 12%;
   /* border: 1px solid gray; */
-  transition: transform .2s;
+  /* transition: transform .2s; */
   text-transform:capitalize;
 }
 
-.weatherCard:hover {
+/* .weatherCard:hover {
   transform: scale(1.2);
-}
+} */
 
 #soloCard {
   margin-top: 1em;
