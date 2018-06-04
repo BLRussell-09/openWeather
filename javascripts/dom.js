@@ -1,7 +1,6 @@
 const domBuilder = (dataArr) =>
 {
   const today = new Date();
-  // today = today.replace(/13:22:50 GMT-0500 (Central Daylight Time)/, '');
   let domString = '';
   dataArr.forEach(element =>
   {
@@ -21,7 +20,8 @@ const domBuilder = (dataArr) =>
     {
       domString += `<p class="conditionTemp"><img data-condition="${element.weather[0].main}" src="./images/rain.png"> ${element.main.temp}&degF</p>`;
     }
-    domString += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${element.main.temp_min}&degF  <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${element.main.temp_max}&degF</p>`;
+    domString += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${element.main.temp_min}&degF</p>`;
+    domString += `<p><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${element.main.temp_max}&degF</p>`;
     domString += `<p>Air Pressure: ${element.main.pressure}</p>`;
     domString += `<p>Wind Speed: ${element.wind.speed}</p>`;
     domString += `<p><button class="btn-primary" id="forecast">5 Day Forecast</button><button class="btn-primary saveForecast" id="saveForecast">Save</button></p>`;
@@ -33,15 +33,16 @@ const domBuilder = (dataArr) =>
 
 const forecastBuilder = (dataArr, name) =>
 {
+  console.log(dataArr);
   let domString = '';
   domString += `<div class="row text-center">`;
   dataArr.forEach(element =>
   {
-    const dayTime = element.dt_txt.replace(/21:00:00/, '').replace(/2018-/, '').split(' ');
+    const date = new Date(element.dt * 1000).toDateString();
     domString += `<div class='col-md-3 '>`;
     domString += `<div class='col-md-12 weather weatherCard ${element.weather[0].main}'>`;
     domString += `<h2 class="locationTitle">${name}</h2>`;
-    domString += `<h2 class="dateTime">${dayTime[0]}</h2>`;
+    domString += `<h2 class="dateTime">${date}</h2>`;
     if (element.weather[0].main === 'Clouds')
     {
       domString += `<p class="conditionTemp"><img data-condition="${element.weather[0].main}" src="./images/cloud.png"> ${element.main.temp}&degF</p>`;
@@ -54,7 +55,8 @@ const forecastBuilder = (dataArr, name) =>
     {
       domString += `<p class="conditionTemp"><img data-condition="${element.weather[0].main}" src="./images/rain.png"> ${element.main.temp}&degF</p>`;
     }
-    domString += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${element.main.temp_min}&degF <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${element.main.temp_max}&degF</p>`;
+    domString += `<p><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> ${element.main.temp_min}&degF</p>`;
+    domString += `<p><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> ${element.main.temp_max}&degF</p>`;
     domString += `<p>Air Pressure: ${element.main.pressure}</p>`;
     domString += `<p>Wind Speed: ${element.wind.speed}</p>`;
     domString += `<button class="btn-primary saveForecast" id="saveForecast">Save</button>`;
