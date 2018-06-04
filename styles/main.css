@@ -33,7 +33,7 @@ body {
 /* Solo and Forecast Cards */
 .weatherCard {
   margin-top: 3em;
-  height: 22em;
+  height: 32em;
   border-radius: 12%;
   /* border: 1px solid gray; */
   /* transition: transform .2s; */
