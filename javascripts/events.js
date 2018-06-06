@@ -8,13 +8,13 @@ const initButtons = () =>
   {
     if (/(\d{5}([\-]\d{4})?)/.test($('#searchBar').val()))
     {
-      if (e.key === 'Enter')
+      if (e.key === 'Enter' && !$('#searchWeather').hasClass('hidden'))
       {
         weather.showWeather();
         $('.fiveDayCast').html('');
       }
     }
-    else if ((e.key === 'Enter'))
+    else if (e.key === 'Enter' && !$('#searchWeather').hasClass('hidden'))
     {
       alert('You need an actual zipcode');
       $('#searchBar').val('');
@@ -133,6 +133,7 @@ const updateWeatherEvent = () =>
 
 const authEvents = () =>
 {
+  // Log In Event
   $('#signInButton').click((e) =>
   {
     e.preventDefault();
@@ -150,6 +151,51 @@ const authEvents = () =>
       });
   });
 
+  // Log Out Event
+  $('#logoutNav').click((e) =>
+  {
+    firebase.auth().signOut().then(() =>
+    {
+      // Sign-out successful.
+      $('#authScreen').removeClass('hidden');
+      $('#myWeather').addClass('hidden');
+      $('#searchWeather').addClass('hidden');
+      $('#myWeatherNav, #searchMe, #logoutNav').addClass('hidden');
+    })
+      .catch((error) =>
+      {
+        // An error happened.
+        console.error(error);
+      });
+  });
+
+  // Register Button
+  $('#register-link').click(() =>
+  {
+    $('#registration-form').removeClass('hidden');
+    $('#login-form').addClass('hidden');
+  });
+
+  // Signin Button
+  $('#signin-link').click(() =>
+  {
+    $('#registration-form').addClass('hidden');
+    $('#login-form').removeClass('hidden');
+  });
+
+  // Register New User Event
+  $('#registerButton').click(() =>
+  {
+    const email = $('#registerEmail').val();
+    const pass = $('#registerPassword').val();
+    firebase.auth().createUserWithEmailAndPassword(email, pass).catch((error) =>
+    {
+      // Handle Errors here.
+      console.error(error.message);
+      // ...
+    });
+
+  });
 };
 
 const initializer = () =>

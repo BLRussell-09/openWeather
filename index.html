@@ -27,14 +27,14 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" id="myWeatherNav">My Weather</a></li>
             <li><a href="#" id="searchMe">Search</a></li>
-            <li><a href="#" id="authScreen">Log In</a></li>
-            <li><a href="#" id="logOutNav">Log Out</a></li>
+            <li><a href="#" id="logoutNav">Log Out</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <div class="container">
-      <div class="row" id="auth">
+      <!-- Sign In Page -->
+      <div class="row" id="authScreen">
         <div class="col-md-12" >
           <div class="jumbotron" id="login-form">
             <h1 class="text-center">Sign In</h1>
@@ -68,7 +68,7 @@
               </div>
             </form>
           </div>
-            <div class="hidden" id="registration-form">
+            <div class="hidden jumbotron" id="registration-form">
                 <h1 class="text-center">Register</h1>
                 <form class="form-horizontal col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
                   <div class="alert alert-danger hidden" id="register-error" role="alert">
@@ -102,6 +102,7 @@
                 </div>
           </div>
       </div>
+      <!-- User Weather Page -->
       <div class="row hidden" id="myWeather">
           <div class="col-md-12" >
             <div class="jumbotron">
@@ -110,6 +111,7 @@
             </div>
           </div>
       </div>
+      <!-- Search Weather Page -->
       <div class="row hidden" id="searchWeather">
         <div class="jumbotron">
           <h2>Weather Trakr</h2>

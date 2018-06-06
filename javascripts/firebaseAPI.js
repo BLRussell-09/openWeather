@@ -1,6 +1,6 @@
 let firebaseConfig = {};
-let uid = {}
-
+let uid = {};
+console.log(uid);
 const setConfig = (fbConfig) =>
 {
   firebaseConfig = fbConfig;
@@ -35,7 +35,7 @@ const getWeather = () =>
   return new Promise ((resolve, reject) =>
   {
     const allWeatherArr = [];
-    $.ajax(`https://openweather-476e1.firebaseio.com/weather.json`).done((allWeatherObj) =>
+    $.ajax(`${firebaseConfig.databaseURL}/weather.json`).done((allWeatherObj) =>
     {
       if (allWeatherObj !== null)
       {
