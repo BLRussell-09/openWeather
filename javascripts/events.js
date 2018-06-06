@@ -131,6 +131,27 @@ const updateWeatherEvent = () =>
   });
 };
 
+const authEvents = () =>
+{
+  $('#signInButton').click((e) =>
+  {
+    e.preventDefault();
+    const email = $('#inputEmail').val();
+    const pass = $('#inputPassword').val();
+    firebase.auth().signInWithEmailAndPassword(email, pass)
+      .then((user) => {})
+      .catch((error) =>
+      {
+        // Handle Errors here.
+        $('#signin-error-msg').text(error.message);
+        $('#signin-error').removeClass('hidden');
+        console.error(error.message);
+        // ...
+      });
+  });
+
+};
+
 const initializer = () =>
 {
   myPages();
@@ -138,6 +159,7 @@ const initializer = () =>
   saveWeatherEvent();
   deleteWeatherEvent();
   updateWeatherEvent();
+  authEvents();
 };
 
 module.exports =
@@ -145,4 +167,5 @@ module.exports =
   initializer,
   fiveCast,
   saveWeatherEvent,
+  getWeatherEvent,
 };
