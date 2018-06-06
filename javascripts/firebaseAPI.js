@@ -1,12 +1,19 @@
 let firebaseConfig = {};
+let uid = {};
 
 const setConfig = (fbConfig) =>
 {
   firebaseConfig = fbConfig;
 };
 
+const setUID = (newUID) =>
+{
+  uid = newUID;
+};
+
 const saveWeather = (newForecast) =>
 {
+  newForecast.uid = uid;
   return new Promise((resolve, reject) =>
   {
     $.ajax(
@@ -29,21 +36,26 @@ const getWeather = () =>
   return new Promise ((resolve, reject) =>
   {
     const allWeatherArr = [];
-    $.ajax(`https://openweather-476e1.firebaseio.com/weather.json`).done((allWeatherObj) =>
-    {
-      if (allWeatherObj !== null)
+    $.ajax(
       {
-        Object.keys(allWeatherObj).forEach((fbKey) =>
+        method: 'GET',
+        url: `${firebaseConfig.databaseURL}/weather.json?orderBy="uid"&equalTo="${uid}"`,
+      })
+      .done((allWeatherObj) =>
+      {
+        if (allWeatherObj !== null)
         {
-          allWeatherObj[fbKey].id = fbKey;
-          allWeatherArr.push(allWeatherObj[fbKey]);
-        });
-      }
-      resolve(allWeatherArr);
-    }).fail((err) =>
-    {
-      reject(err);
-    });
+          Object.keys(allWeatherObj).forEach((fbKey) =>
+          {
+            allWeatherObj[fbKey].id = fbKey;
+            allWeatherArr.push(allWeatherObj[fbKey]);
+          });
+        }
+        resolve(allWeatherArr);
+      }).fail((err) =>
+      {
+        reject(err);
+      });
   });
 };
 
@@ -69,6 +81,7 @@ const deleteWeatherFromDb = (weatherId) =>
 
 const updateWeatherDb = (updatedWeatherCard, weatherId) =>
 {
+  updatedWeatherCard.uid = uid;
   return new Promise ((resolve, reject) =>
   {
     $.ajax(
@@ -91,6 +104,7 @@ const updateWeatherDb = (updatedWeatherCard, weatherId) =>
 module.exports =
 {
   setConfig,
+  setUID,
   saveWeather,
   getWeather,
   deleteWeatherFromDb,
