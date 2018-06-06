@@ -9,7 +9,6 @@ const checkLoginStatus = () =>
     {
       // User is signed in.
       setUID(user.uid);
-      console.log(`I'm in`);
       getWeatherEvent();
       $('#authScreen').addClass('hidden');
       $('#myWeather').removeClass('hidden');

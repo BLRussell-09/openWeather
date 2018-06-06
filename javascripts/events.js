@@ -57,7 +57,6 @@ const saveWeatherEvent = () =>
 {
   $(document).on('click', '.saveForecast', (e) =>
   {
-    console.log('saved?');
     const weatherToAddCard = $(e.target).closest('.weatherCard');
     const weatherToAdd =
     {
@@ -80,7 +79,6 @@ const getWeatherEvent = () =>
   firebaseAPI.getWeather()
     .then((weatherArray) =>
     {
-      console.log(weatherArray);
       dom.weatherList(weatherArray, 'savedWeather');
     })
     .catch((err) =>
@@ -108,7 +106,6 @@ const updateWeatherEvent = () =>
 {
   $(document).on('click', '.updateCard', (e) =>
   {
-    console.log('updated?');
     const weatherToUpdateId = $(e.target).closest('.weatherCard').data('firebaseId');
     const weatherToUpdateCard = $(e.target).closest('.weatherCard');
     const updatedWeather =
@@ -191,6 +188,8 @@ const authEvents = () =>
     firebase.auth().createUserWithEmailAndPassword(email, pass).catch((error) =>
     {
       // Handle Errors here.
+      $('#register-error-msg').text(error.message);
+      $('#register-error').removeClass('hidden');
       console.error(error.message);
       // ...
     });
