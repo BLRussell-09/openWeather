@@ -108,23 +108,56 @@ const updateWeatherEvent = () =>
   {
     const weatherToUpdateId = $(e.target).closest('.weatherCard').data('firebaseId');
     const weatherToUpdateCard = $(e.target).closest('.weatherCard');
-    const updatedWeather =
+    if (weatherToUpdateCard.hasClass('red'))
     {
-      location: weatherToUpdateCard.find('.locationTitle').text(),
-      wttrConditions: weatherToUpdateCard.find('img').data('condition'),
-      date: weatherToUpdateCard.find('.dateTime').text(),
-      temp: weatherToUpdateCard.find('.conditionTemp').text(),
-      isScary: true,
-    };
-    firebaseAPI.updateWeatherDb(updatedWeather, weatherToUpdateId)
-      .then(() =>
+      console.log(`I'm red`);
+      const updatedWeather =
       {
-        getWeatherEvent();
-      })
-      .catch((err) =>
+        location: weatherToUpdateCard.find('.locationTitle').text(),
+        wttrConditions: weatherToUpdateCard.find('img').data('condition'),
+        date: weatherToUpdateCard.find('.dateTime').text(),
+        temp: weatherToUpdateCard.find('.conditionTemp').text(),
+        isScary: false,
+      };
+      firebaseAPI.updateWeatherDb(updatedWeather, weatherToUpdateId)
+        .then(() =>
+        {
+          getWeatherEvent();
+        })
+        .catch((err) =>
+        {
+          console.error(err);
+        });
+    }
+    else
+    {
+      const updatedWeather =
       {
-        console.error(err);
-      });
+        location: weatherToUpdateCard.find('.locationTitle').text(),
+        wttrConditions: weatherToUpdateCard.find('img').data('condition'),
+        date: weatherToUpdateCard.find('.dateTime').text(),
+        temp: weatherToUpdateCard.find('.conditionTemp').text(),
+        isScary: true,
+      };
+      firebaseAPI.updateWeatherDb(updatedWeather, weatherToUpdateId)
+        .then(() =>
+        {
+          getWeatherEvent();
+        })
+        .catch((err) =>
+        {
+          console.error(err);
+        });
+    }
+    // firebaseAPI.updateWeatherDb(updatedWeather, weatherToUpdateId)
+    //   .then(() =>
+    //   {
+    //     getWeatherEvent();
+    //   })
+    //   .catch((err) =>
+    //   {
+    //     console.error(err);
+    //   });
   });
 };
 
@@ -148,8 +181,9 @@ const authEvents = () =>
       });
   });
   // Log In With Google
-  $('#signInButtonGoogle').click(() =>
+  $('#signInButtonGoogle').click((e) =>
   {
+    e.preventDefault();
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then((result) =>
     {
