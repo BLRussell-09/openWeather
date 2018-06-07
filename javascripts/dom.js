@@ -100,7 +100,14 @@ const weatherList = (weatherArr, whereToPrint) =>
       domString += `<p><img data-condition="${element.wttrConditions}" src="./images/rain.png"></p>`;
     }
     domString += `<p class="conditionTemp">${element.temp}</p>`;
-    domString += `<a class="btn updateCard"><img class="scaryFace" src="./images/scared.png"></a>`;
+    if (element.isScary === false)
+    {
+      domString += `<a class="btn updateCard"><img class="scaryFace" src="./images/scared.png"></a>`;
+    }
+    else
+    {
+      domString += `<a class="btn updateCard"><img class="scaryFace" src="./images/smile.png"></a>`;
+    }
     domString += `</div>`;
   });
   domString += `</div>`;
