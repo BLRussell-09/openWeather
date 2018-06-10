@@ -5,6 +5,15 @@
 
 ## Screenshots
 
+![Login Screen](https://raw.githubusercontent.com/BLRussell-09/openWeather/master/screenshots/login.png "Log In Page")
+
+
+![My Weaher](https://raw.githubusercontent.com/BLRussell-09/openWeather/master/screenshots/myWeather.png "User Saved Weather Page")
+
+
+![Weather Search](https://raw.githubusercontent.com/BLRussell-09/openWeather/master/screenshots/weatherSearch.png "Weather Search")
+
+
 ## Fire it up
 > Serve up the site and load the page
 1. Clone down the repo and cd into the project.
