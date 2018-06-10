@@ -11,7 +11,7 @@ const setKey = (key) =>
 const searchWeather = () =>
 {
   const zipCode = $('#searchBar').val();
-  const url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&APPID=`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&APPID=`;
   return new Promise((resolve, reject) =>
   {
     $.ajax(url + apiKey).done((result) =>
@@ -27,7 +27,7 @@ const searchWeather = () =>
 const fiveCast = () =>
 {
   const zipCode = $('#searchBar').val();
-  const url = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&units=imperial&APPID=`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipCode},us&units=imperial&APPID=`;
   return new Promise((resolve, reject) =>
   {
     $.ajax(url + apiKey).done((result) =>
